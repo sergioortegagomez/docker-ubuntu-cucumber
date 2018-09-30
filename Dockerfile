@@ -67,6 +67,9 @@ RUN unzip chromedriver_linux64.zip
 RUN mv chromedriver /usr/local/bin
 RUN rm chromedriver_linux64.zip
 
+# Selenium Server
+COPY selenium-server-standalone-3.14.0.jar /opt/selenium-server-standalone-3.14.0.jar
+
 # Installs Ruby Gems
 RUN apt-get install -yqq ruby 2.2.0
 RUN apt-get install -yqq ruby-dev
@@ -89,11 +92,10 @@ EXPOSE 3389
 
 # Workspace
 RUN mkdir -p /opt/cucumber
-WORKDIR /opt/cucumber
 
-# Fake display
-RUN sudo Xvfb :10 -ac &
-RUN export DISPLAY=:10
+COPY entrypoint.sh /opt/entrypoint.sh
+RUN chmod +x /opt/entrypoint.sh
 
-CMD ["cucumber", "--format", "pretty", "--format", "html", "--out", "report.html"]
+WORKDIR /opt/
+CMD ["/opt/entrypoint.sh"]
 #CMD ["/usr/bin/supervisord", "-n"]

@@ -1,6 +1,6 @@
-# Docker Ubuntu 18.10 Mate Desktop Xrpc with Cucumber
+# Docker Ubuntu 18.10 Mate Desktop with Cucumber
 
-Docker container for automatize your test in browser with screenshots.
+Docker container for automatize your cucumber test in browser Chrome and FireFox with screenshots.
 
 ## Libraries preload.
 
@@ -98,4 +98,4 @@ services:
 
 ## Examples
 
-- [Dynamic-Content-Manager](https://github.com/segodev/dynamic-content-system)
+- [Dynamic-Content-System](https://github.com/segodev/dynamic-content-system)

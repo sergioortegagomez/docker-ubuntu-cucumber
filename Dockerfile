@@ -5,7 +5,7 @@ LABEL email = "sergio.ortega.gomez@gmail.com"
 LABEL version = "0.1.0"
 LABEL description = "Ubuntu Desktop Mate with Cucumber. \
 Libraries: cucumber, gherkin, capybara, pry, rspec, selenium-webdriver, selenium-cucumber, cucumber-api, cucumber-screenshot. \
-GitHub: https://github.com/sergioortegagomez/ \
+GitHub: https://github.com/sergioortegagomez/docker-ubuntu-cucumber \
 Example: https://github.com/segodev/dynamic-content-system"
 
 # Envirenment variables
@@ -19,7 +19,7 @@ RUN usermod -aG sudo ubuntu
 
 # Install library
 RUN apt-get update && apt-get install -yqq --no-install-recommends \
-    ca-certificates git curl wget vim zsh htop atop unzip \
+    ca-certificates git curl wget vim zsh htop atop unzip xvfb \
     autoconf automake libtool g++ m4 mc bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev \
     openssh-server supervisor sudo tzdata epiphany-browser \
     default-jdk default-jre default-jdk-headless default-jre-headless
@@ -90,6 +90,10 @@ EXPOSE 3389
 # Workspace
 RUN mkdir -p /opt/cucumber
 WORKDIR /opt/cucumber
+
+# Fake display
+RUN sudo Xvfb :10 -ac &
+RUN export DISPLAY=:10
 
 CMD ["cucumber", "--format", "pretty", "--format", "html", "--out", "report.html"]
 #CMD ["/usr/bin/supervisord", "-n"]

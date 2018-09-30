@@ -17,7 +17,7 @@ Docker container for automatize your cucumber test in browser Chrome and FireFox
 ## Generate a test skeleton
 
 ```console
-- /test/
+- ./test/
   - features/
     - mytest.feature
     - screenshot/
@@ -83,7 +83,7 @@ The predefined steps are located [here](https://github.com/selenium-cucumber/sel
 ## Run in docker
 
 ```console
-docker run --volume ./test:/opt/cucumber docker-ubuntu-xrpc-cucumber
+docker run --volume ./test:/opt/cucumber sergioortegagomez/docker-ubuntu-cucumber
 ```
 
 ## Run in docker-compose
@@ -91,9 +91,9 @@ docker run --volume ./test:/opt/cucumber docker-ubuntu-xrpc-cucumber
 ```yml
 services:
   test:
-    image: sergioortegagomez/docker-ubuntu-xrpd-cucumber
+    image: sergioortegagomez/docker-ubuntu-cucumber
     volumes:
-      - test:/opt/cucumber
+      - ./test:/opt/cucumber
 ```
 
 ## Examples

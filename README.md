@@ -37,8 +37,7 @@ require 'selenium-cucumber'
 
 caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => [ "--disable-web-security", "--no-sandbox" ]})
 
-$driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
-$driver.manage().window().maximize()
+$driver = Selenium::WebDriver.for :remote, desired_capabilities: caps
 ```
 
 FireFox example:
@@ -47,7 +46,7 @@ FireFox example:
 require 'selenium-webdriver'
 require 'selenium-cucumber'
 
-$driver = Selenium::WebDriver.for :firefox
+$driver = Selenium::WebDriver.for :remote, desired_capabilities: :firefox
 $driver.manage().window().maximize()
 ```
 

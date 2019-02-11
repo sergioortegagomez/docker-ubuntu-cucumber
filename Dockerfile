@@ -96,6 +96,8 @@ RUN mkdir -p /opt/cucumber
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN chmod +x /opt/entrypoint.sh
 
+ARG DESKTOP=false
+ENV DESKTOP=$DESKTOP
+
 WORKDIR /opt/
 CMD ["/opt/entrypoint.sh"]
-#CMD ["/usr/bin/supervisord", "-n"]

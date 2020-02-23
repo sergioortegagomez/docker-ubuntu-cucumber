@@ -54,22 +54,17 @@ $driver.manage().window().maximize()
 
 ```ruby
 begin
-  require 'cucumber_screenshot'
-  World(CucumberScreenshot::World)
-
-  After do |scenario|
-    if scenario.failed?
-      screenshot
+    After do |scenario|
+        if scenario.failed?
+            take_screenshot
+        end
     end
-  end
 
-  AfterStep('@screenshot') do |scenario|
-    if screenshot_due?
-      screenshot
+    AfterStep do |scenario|
+        take_screenshot
     end
-  end
-  rescue Exception => e
-    puts "Snapshots not available for this environment.\n"
+    rescue Exception => e
+        puts "Snapshots not available for this environment.\n"
 end
 ```
 
